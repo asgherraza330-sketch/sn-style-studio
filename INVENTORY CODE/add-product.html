@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Add Product | SN Style Studio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23241C14'/%3E%3Ctext x='50' y='68' font-size='55' font-family='Georgia,serif' fill='%23C9A24B' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="add-product">
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark">S</div>
+        <div>
+          <h1 class="logo">SN Style Studio</h1>
+          <p class="tagline">Inventory Management System</p>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span id="headerDate"></span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="main-nav-inner">
+      <a href="dashboard.html" class="nav-link" data-page="dashboard">Dashboard</a>
+      <a href="inventory.html" class="nav-link" data-page="inventory">Inventory</a>
+      <a href="add-product.html" class="nav-link" data-page="add-product">Add Product</a>
+      <a href="categories.html" class="nav-link" data-page="categories">Categories</a>
+      <a href="reports.html" class="nav-link" data-page="reports">Reports</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <div class="page-heading">
+      <div>
+        <h2 class="page-title">Add New Product</h2>
+        <p class="page-subtitle">Add a new item to the SN Style Studio inventory. Fields marked <span class="required-mark">*</span> are required.</p>
+      </div>
+    </div>
+
+    <section class="dashboard-panel add-product-panel">
+      <form id="addProductForm" novalidate>
+
+        <div class="image-upload-row">
+          <div class="image-preview" id="apImagePreviewBox">
+            <span>No Image</span>
+          </div>
+          <div class="image-upload-controls">
+            <label for="apImageFile">Product Image</label>
+            <input type="file" id="apImageFile" accept="image/*" />
+            <input type="text" id="apImageUrl" placeholder="...or paste an image URL" />
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="apProductId">Product ID / SKU <span class="required-mark">*</span></label>
+            <input type="text" id="apProductId" required />
+          </div>
+          <div class="field">
+            <label for="apProductName">Product Name <span class="required-mark">*</span></label>
+            <input type="text" id="apProductName" required />
+          </div>
+
+          <div class="field">
+            <label for="apCategory">Category <span class="required-mark">*</span></label>
+            <select id="apCategory" required>
+              <option value="">— Select a category —</option>
+              <option value="Dress">Dress</option>
+              <option value="Suit">Suit</option>
+              <option value="Lawn">Lawn</option>
+              <option value="Khussa">Khussa</option>
+              <option value="Jewelry">Jewelry</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="apSize">Size</label>
+            <select id="apSize">
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+              <option value="Free Size">Free Size</option>
+              <optgroup label="Shoe Size (EU)">
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="apColor">Color</label>
+            <input type="text" id="apColor" />
+          </div>
+          <div class="field">
+            <label for="apCostPrice">Cost Price ($) <span class="required-mark">*</span></label>
+            <input type="number" id="apCostPrice" min="0" step="0.01" required />
+          </div>
+          <div class="field">
+            <label for="apSellingPrice">Selling Price ($) <span class="required-mark">*</span></label>
+            <input type="number" id="apSellingPrice" min="0" step="0.01" required />
+          </div>
+          <div class="field">
+            <label for="apQty">Quantity <span class="required-mark">*</span></label>
+            <input type="number" id="apQty" min="0" step="1" required />
+          </div>
+          <div class="field">
+            <label for="apDate">Date Added</label>
+            <input type="date" id="apDate" />
+          </div>
+
+          <div class="field field-full">
+            <label for="apNotePreset">Notes</label>
+            <select id="apNotePreset">
+              <option value="">— Select a quick note —</option>
+              <option value="New Arrival">New Arrival</option>
+              <option value="Bestseller">Bestseller</option>
+              <option value="Reorder Soon">Reorder Soon</option>
+              <option value="Damaged">Damaged</option>
+              <option value="Photos Needed">Photos Needed</option>
+              <option value="Clearance">Clearance</option>
+              <option value="Limited Stock">Limited Stock</option>
+              <option value="custom">Custom…</option>
+            </select>
+            <input type="text" id="apNoteCustom" placeholder="Add a custom note" style="margin-top:8px;" hidden />
+          </div>
+
+          <div class="field field-full">
+            <label for="apDescription">Description <span class="optional-mark">(optional)</span></label>
+            <textarea id="apDescription" rows="3" placeholder="Fabric, fit, styling notes, or any other product details..."></textarea>
+          </div>
+        </div>
+
+        <p id="apFormError" class="form-error" hidden>Please fill all required fields.</p>
+
+        <div class="add-product-actions">
+          <a href="inventory.html" class="btn btn-secondary">Cancel</a>
+          <button type="submit" class="btn btn-primary">Add Product</button>
+        </div>
+      </form>
+    </section>
+
+  </main>
+
+  <p class="brand-footer">SN Style Studio &mdash; Internal Inventory Tool</p>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

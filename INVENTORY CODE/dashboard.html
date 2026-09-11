@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard | SN Style Studio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23241C14'/%3E%3Ctext x='50' y='68' font-size='55' font-family='Georgia,serif' fill='%23C9A24B' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="dashboard">
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark">S</div>
+        <div>
+          <h1 class="logo">SN Style Studio</h1>
+          <p class="tagline">Inventory Management System</p>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span id="headerDate"></span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="main-nav-inner">
+      <a href="dashboard.html" class="nav-link" data-page="dashboard">Dashboard</a>
+      <a href="inventory.html" class="nav-link" data-page="inventory">Inventory</a>
+      <a href="add-product.html" class="nav-link" data-page="add-product">Add Product</a>
+      <a href="categories.html" class="nav-link" data-page="categories">Categories</a>
+      <a href="reports.html" class="nav-link" data-page="reports">Reports</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <div class="page-heading">
+      <div>
+        <h2 class="page-title">Dashboard</h2>
+        <p class="page-subtitle">A snapshot of SN Style Studio's inventory health and activity.</p>
+        <p class="last-updated" id="lastUpdatedText">Last updated: —</p>
+      </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <section class="stats-grid stats-grid-6" aria-label="Dashboard summary">
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-gold">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 7L12 3L21 7L12 11L3 7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 7V17L12 21L21 17V7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 11V21" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <div>
+          <p class="stat-value" id="dashStatTotalProducts">0</p>
+          <p class="stat-label">Total Products</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-brown">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2V22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M17 5.5H9.5C8.12 5.5 7 6.62 7 8C7 9.38 8.12 10.5 9.5 10.5H14.5C15.88 10.5 17 11.62 17 13C17 14.38 15.88 15.5 14.5 15.5H7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <p class="stat-value" id="dashStatCostValue">$0.00</p>
+          <p class="stat-label">Total Cost Value</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-gold">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <p class="stat-value" id="dashStatRetailValue">$0.00</p>
+          <p class="stat-label">Total Retail Value</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-in">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <p class="stat-value" id="dashStatInStock">0</p>
+          <p class="stat-label">In Stock</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-low">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 9V13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M10.29 3.86L1.82 18a1.5 1.5 0 001.29 2.25h17.78A1.5 1.5 0 0022.18 18L13.71 3.86a1.5 1.5 0 00-2.42 0z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="16.5" r="0.9" fill="currentColor"/></svg>
+        </div>
+        <div>
+          <p class="stat-value" id="dashStatLowStock">0</p>
+          <p class="stat-label">Low Stock</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-out">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <p class="stat-value" id="dashStatOutStock">0</p>
+          <p class="stat-label">Out of Stock</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Actions (now includes Backup / Restore / Reset Demo Data) -->
+    <section class="dashboard-panel quick-actions-panel">
+      <div class="dashboard-panel-header">
+        <h3 class="section-title">Quick Actions</h3>
+      </div>
+      <p class="section-subtitle">Common tasks and data-safety tools for the admin.</p>
+      <div class="quick-actions-row">
+        <a href="add-product.html" class="btn btn-primary"><span class="plus">+</span> Add New Product</a>
+        <a href="inventory.html" class="btn btn-secondary">View Full Inventory</a>
+        <button id="dashExportBtn" class="btn btn-secondary" type="button">Export Inventory CSV</button>
+        <button id="backupDataBtn" class="btn btn-secondary" type="button">Backup Inventory Data</button>
+        <button id="restoreDataBtn" class="btn btn-secondary" type="button">Restore Inventory Data</button>
+        <button id="resetDemoBtn" class="btn btn-danger" type="button">Reset Demo Data</button>
+      </div>
+      <!-- Hidden file input used by "Restore Inventory Data" -->
+      <input type="file" id="restoreFileInput" accept=".json" hidden />
+    </section>
+
+    <!-- Out of Stock Alert (featured, full width) -->
+    <section class="dashboard-panel alert-panel alert-panel-out alert-panel-featured">
+      <div class="dashboard-panel-header">
+        <h3 class="section-title">Out of Stock Alert</h3>
+        <span class="alert-count-badge alert-count-badge-out" id="outStockCount">0</span>
+      </div>
+      <p class="section-subtitle">These products have zero units left and need restocking.</p>
+      <ul class="alert-list" id="outStockList"></ul>
+      <p id="outStockEmpty" class="alert-empty" hidden>Nothing is out of stock. Nice work!</p>
+    </section>
+
+    <!-- Recent Products + Top Low Stock Items -->
+    <section class="dashboard-grid">
+      <div class="dashboard-panel">
+        <div class="dashboard-panel-header">
+          <h3 class="section-title">Recent Products</h3>
+        </div>
+        <p class="section-subtitle">The last 5 products added to inventory.</p>
+        <div class="table-wrapper">
+          <table class="inventory-table compact-table">
+            <thead>
+              <tr>
+                <th class="no-sort">Image</th>
+                <th>Product Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Status</th>
+                <th>Date Added</th>
+              </tr>
+            </thead>
+            <tbody id="recentProductsBody"></tbody>
+          </table>
+          <p id="recentProductsEmpty" class="panel-empty" hidden>No products yet — add your first product to get started.</p>
+        </div>
+      </div>
+
+      <div class="dashboard-panel alert-panel-low">
+        <div class="dashboard-panel-header">
+          <h3 class="section-title">Top Low Stock Items</h3>
+          <span class="alert-count-badge" id="lowStockCount">0</span>
+        </div>
+        <p class="section-subtitle">The 2 products running lowest on stock.</p>
+        <ul class="alert-list" id="lowStockList"></ul>
+        <p id="lowStockEmpty" class="alert-empty" hidden>No products are running low right now.</p>
+        <a href="inventory.html?filter=Low%20Stock" class="panel-link">View all low stock products &rarr;</a>
+      </div>
+    </section>
+
+    <!-- Inventory Health + Stock Status Breakdown -->
+    <section class="dashboard-grid dashboard-grid-health">
+      <div class="dashboard-panel health-panel" id="healthPanel">
+        <div class="dashboard-panel-header">
+          <h3 class="section-title">Inventory Health</h3>
+        </div>
+        <div class="health-status">
+          <span class="health-badge" id="healthBadge">Good</span>
+          <p class="health-message" id="healthMessage">Good: most products are in stock and healthy.</p>
+        </div>
+      </div>
+
+      <div class="dashboard-panel">
+        <div class="dashboard-panel-header">
+          <h3 class="section-title">Stock Status Breakdown</h3>
+        </div>
+        <p class="section-subtitle">Share of products In Stock, Low Stock, and Out of Stock.</p>
+        <div class="stock-breakdown-bar">
+          <span class="breakdown-segment breakdown-in" id="breakdownIn" style="width:0%"></span>
+          <span class="breakdown-segment breakdown-low" id="breakdownLow" style="width:0%"></span>
+          <span class="breakdown-segment breakdown-out" id="breakdownOut" style="width:0%"></span>
+        </div>
+        <div class="breakdown-legend">
+          <span class="legend-item"><span class="legend-dot legend-dot-in"></span>In Stock: <b id="legendInCount">0</b></span>
+          <span class="legend-item"><span class="legend-dot legend-dot-low"></span>Low Stock: <b id="legendLowCount">0</b></span>
+          <span class="legend-item"><span class="legend-dot legend-dot-out"></span>Out of Stock: <b id="legendOutCount">0</b></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stock by Category -->
+    <section class="dashboard-panel category-stock-panel">
+      <div class="dashboard-panel-header">
+        <h3 class="section-title">Stock by Category</h3>
+      </div>
+      <p class="section-subtitle">Total units currently in stock per category.</p>
+      <ul class="category-stock-list" id="categoryStockList"></ul>
+      <p id="categoryStockEmpty" class="panel-empty" hidden>No products yet — add products to see category breakdown.</p>
+    </section>
+
+    <!-- View Full Inventory CTA -->
+    <div class="view-inventory-cta">
+      <div>
+        <h3>Need the full picture?</h3>
+        <p>Search, filter, sort, and manage every product in the inventory list.</p>
+      </div>
+      <a href="inventory.html" class="btn btn-primary">View Full Inventory</a>
+    </div>
+
+  </main>
+
+  <p class="brand-footer">SN Style Studio &mdash; Internal Inventory Tool</p>
+
+  <!-- Reset Demo Data confirmation modal -->
+  <div id="resetDemoModal" class="modal-overlay" hidden>
+    <div class="modal modal-small">
+      <h3>Reset Demo Data</h3>
+      <p>This will replace ALL current inventory data with the original sample/demo products. This action cannot be undone. Are you sure you want to continue?</p>
+      <div class="modal-actions">
+        <button type="button" id="cancelResetBtn" class="btn btn-secondary">Cancel</button>
+        <button type="button" id="confirmResetBtn" class="btn btn-danger">Yes, Reset Demo Data</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>

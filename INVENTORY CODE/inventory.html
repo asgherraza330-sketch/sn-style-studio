@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inventory | SN Style Studio</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%23241C14'/%3E%3Ctext x='50' y='68' font-size='55' font-family='Georgia,serif' fill='%23C9A24B' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="inventory">
+
+  <header class="header">
+    <div class="header-inner">
+      <div class="brand">
+        <div class="brand-mark">S</div>
+        <div>
+          <h1 class="logo">SN Style Studio</h1>
+          <p class="tagline">Inventory Management System</p>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span id="headerDate"></span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="main-nav-inner">
+      <a href="dashboard.html" class="nav-link" data-page="dashboard">Dashboard</a>
+      <a href="inventory.html" class="nav-link" data-page="inventory">Inventory</a>
+      <a href="add-product.html" class="nav-link" data-page="add-product">Add Product</a>
+      <a href="categories.html" class="nav-link" data-page="categories">Categories</a>
+      <a href="reports.html" class="nav-link" data-page="reports">Reports</a>
+    </div>
+  </nav>
+
+  <main class="container">
+
+    <div class="page-heading">
+      <div>
+        <h2 class="page-title">Inventory Product List</h2>
+        <p class="page-subtitle">View, search, and manage all SN Style Studio products in one place.</p>
+      </div>
+    </div>
+
+    <section class="stats-grid" aria-label="Inventory summary">
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-gold">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M3 7L12 3L21 7L12 11L3 7Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 7V17L12 21L21 17V7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M12 11V21" stroke="currentColor" stroke-width="1.6"/></svg>
+        </div>
+        <div>
+          <p class="stat-value" id="statTotalProducts">0</p>
+          <p class="stat-label">Total Products</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-brown">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 2V22" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><path d="M17 5.5H9.5C8.12 5.5 7 6.62 7 8C7 9.38 8.12 10.5 9.5 10.5H14.5C15.88 10.5 17 11.62 17 13C17 14.38 15.88 15.5 14.5 15.5H7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <p class="stat-value" id="statTotalValue">$0.00</p>
+          <p class="stat-label">Total Inventory Value</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-in">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17L4 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div>
+          <p class="stat-value" id="statInStock">0</p>
+          <p class="stat-label">In Stock</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-low">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 9V13" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M10.29 3.86L1.82 18a1.5 1.5 0 001.29 2.25h17.78A1.5 1.5 0 0022.18 18L13.71 3.86a1.5 1.5 0 00-2.42 0z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><circle cx="12" cy="16.5" r="0.9" fill="currentColor"/></svg>
+        </div>
+        <div>
+          <p class="stat-value" id="statLowStock">0</p>
+          <p class="stat-label">Low Stock</p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon stat-icon-out">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M18 6L6 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 6L18 18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+        </div>
+        <div>
+          <p class="stat-value" id="statOutStock">0</p>
+          <p class="stat-label">Out of Stock</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="toolbar">
+      <div class="toolbar-left">
+        <div class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M18 18L13.8 13.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <input type="text" id="searchInput" class="search-input" placeholder="Search by product name..." />
+        </div>
+        <select id="filterStatus" class="filter-select">
+          <option value="all">All Status</option>
+          <option value="In Stock">In Stock</option>
+          <option value="Low Stock">Low Stock</option>
+          <option value="Out of Stock">Out of Stock</option>
+        </select>
+        <select id="filterSize" class="filter-select">
+          <option value="all">All Sizes</option>
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+          <option value="XXL">XXL</option>
+          <option value="Free Size">Free Size</option>
+          <optgroup label="Shoe Size (EU)">
+            <option value="36">36</option>
+            <option value="37">37</option>
+            <option value="38">38</option>
+            <option value="39">39</option>
+            <option value="40">40</option>
+            <option value="41">41</option>
+            <option value="42">42</option>
+          </optgroup>
+        </select>
+        <select id="filterCategory" class="filter-select">
+          <option value="all">All Categories</option>
+        </select>
+      </div>
+      <div class="toolbar-right">
+        <button id="exportBtn" class="btn btn-secondary" type="button">Export CSV</button>
+        <button id="importCsvBtn" class="btn btn-secondary" type="button">Import CSV</button>
+        <button id="downloadTemplateBtn" class="btn btn-secondary" type="button">Download Sample CSV Template</button>
+        <a href="add-product.html" class="btn btn-primary">
+          <span class="plus">+</span> Add New Product
+        </a>
+      </div>
+    </div>
+
+    <!-- Hidden file input used by the "Import CSV" button above -->
+    <input type="file" id="importCsvFileInput" accept=".csv" hidden />
+
+    <div class="table-wrapper">
+      <table class="inventory-table">
+        <thead>
+          <tr>
+            <th class="no-sort">Image</th>
+            <th data-sort="id">Product ID<span class="sort-arrow"></span></th>
+            <th data-sort="name">Product Name<span class="sort-arrow"></span></th>
+            <th data-sort="category">Category<span class="sort-arrow"></span></th>
+            <th>Size</th>
+            <th>Color</th>
+            <th data-sort="price">Selling Price<span class="sort-arrow"></span></th>
+            <th data-sort="qty">Quantity<span class="sort-arrow"></span></th>
+            <th data-sort="total">Total Value<span class="sort-arrow"></span></th>
+            <th>Stock Status</th>
+            <th class="no-sort">Notes</th>
+            <th data-sort="dateAdded">Date Added<span class="sort-arrow"></span></th>
+            <th class="no-sort">Actions</th>
+          </tr>
+        </thead>
+        <tbody id="inventoryTableBody"></tbody>
+      </table>
+      <div id="noResults" class="no-results" hidden>
+        <p class="no-results-title">No products found</p>
+        <p class="no-results-sub">Try a different search term or filter.</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>Showing <span id="visibleCount">0</span> of <span id="totalProducts">0</span> products</p>
+    </footer>
+
+  </main>
+
+  <p class="brand-footer">SN Style Studio &mdash; Internal Inventory Tool</p>
+
+  <!-- Edit Product modal (Add now happens on its own page: add-product.html) -->
+  <div id="productModal" class="modal-overlay" hidden>
+    <div class="modal">
+      <h3 id="modalTitle">Edit Product</h3>
+      <form id="productForm">
+        <input type="hidden" id="productIndex" />
+
+        <div class="image-upload-row">
+          <div class="image-preview" id="imagePreviewBox">
+            <span id="imagePreviewPlaceholder">No Image</span>
+          </div>
+          <div class="image-upload-controls">
+            <label for="productImageFile">Product Image</label>
+            <input type="file" id="productImageFile" accept="image/*" />
+            <input type="text" id="productImage" placeholder="...or paste an image URL" />
+          </div>
+        </div>
+
+        <div class="form-grid">
+          <div class="field">
+            <label for="productId">Product ID / SKU <span class="required-mark">*</span></label>
+            <input type="text" id="productId" required />
+          </div>
+          <div class="field">
+            <label for="productName">Product Name <span class="required-mark">*</span></label>
+            <input type="text" id="productName" required />
+          </div>
+
+          <div class="field">
+            <label for="productCategory">Category <span class="required-mark">*</span></label>
+            <select id="productCategory" required>
+              <option value="">— Select a category —</option>
+              <option value="Dress">Dress</option>
+              <option value="Suit">Suit</option>
+              <option value="Lawn">Lawn</option>
+              <option value="Khussa">Khussa</option>
+              <option value="Jewelry">Jewelry</option>
+              <option value="Accessories">Accessories</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="productSize">Size</label>
+            <select id="productSize">
+              <option value="S">S</option>
+              <option value="M">M</option>
+              <option value="L">L</option>
+              <option value="XL">XL</option>
+              <option value="XXL">XXL</option>
+              <option value="Free Size">Free Size</option>
+              <optgroup label="Shoe Size (EU)">
+                <option value="36">36</option>
+                <option value="37">37</option>
+                <option value="38">38</option>
+                <option value="39">39</option>
+                <option value="40">40</option>
+                <option value="41">41</option>
+                <option value="42">42</option>
+              </optgroup>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="productColor">Color</label>
+            <input type="text" id="productColor" />
+          </div>
+          <div class="field">
+            <label for="productCostPrice">Cost Price ($) <span class="required-mark">*</span></label>
+            <input type="number" id="productCostPrice" min="0" step="0.01" required />
+          </div>
+          <div class="field">
+            <label for="productPrice">Selling Price ($) <span class="required-mark">*</span></label>
+            <input type="number" id="productPrice" min="0" step="0.01" required />
+          </div>
+          <div class="field">
+            <label for="productQty">Quantity <span class="required-mark">*</span></label>
+            <input type="number" id="productQty" min="0" step="1" required />
+          </div>
+          <div class="field">
+            <label for="productDate">Date Added</label>
+            <input type="date" id="productDate" />
+          </div>
+
+          <div class="field field-full">
+            <label for="productNotePreset">Notes</label>
+            <select id="productNotePreset">
+              <option value="">— Select a quick note —</option>
+              <option value="New Arrival">New Arrival</option>
+              <option value="Bestseller">Bestseller</option>
+              <option value="Reorder Soon">Reorder Soon</option>
+              <option value="Damaged">Damaged</option>
+              <option value="Photos Needed">Photos Needed</option>
+              <option value="Clearance">Clearance</option>
+              <option value="Limited Stock">Limited Stock</option>
+              <option value="custom">Custom…</option>
+            </select>
+            <input type="text" id="productNoteCustom" placeholder="Add a custom note" style="margin-top:8px;" hidden />
+          </div>
+
+          <div class="field field-full">
+            <label for="productDescription">Description <span class="optional-mark">(optional)</span></label>
+            <textarea id="productDescription" rows="3" placeholder="Fabric, fit, styling notes, or any other product details..."></textarea>
+          </div>
+        </div>
+
+        <p id="formError" class="form-error" hidden>Please fill all required fields.</p>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelBtn" class="btn btn-secondary">Cancel</button>
+          <button type="submit" class="btn btn-primary">Save Product</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div id="deleteModal" class="modal-overlay" hidden>
+    <div class="modal modal-small">
+      <h3>Delete Product</h3>
+      <p id="deleteMessage">Are you sure you want to delete this product?</p>
+      <div class="modal-actions">
+        <button type="button" id="cancelDeleteBtn" class="btn btn-secondary">Cancel</button>
+        <button type="button" id="confirmDeleteBtn" class="btn btn-danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import CSV preview modal -->
+  <div id="importModal" class="modal-overlay" hidden>
+    <div class="modal modal-import">
+      <h3>Import Products from CSV</h3>
+      <p class="section-subtitle">Review the products below before importing. Rows marked "Error" will be skipped — see the Import Error Report above the table for exact row numbers and reasons.</p>
+
+      <div id="importSummary" class="import-summary"></div>
+
+      <div class="table-wrapper import-preview-wrapper">
+        <table class="inventory-table compact-table">
+          <thead>
+            <tr>
+              <th class="no-sort">Row</th>
+              <th class="no-sort">Status</th>
+              <th>SKU</th>
+              <th>Product Name</th>
+              <th>Category</th>
+              <th>Size</th>
+              <th>Color</th>
+              <th>Cost Price</th>
+              <th>Selling Price</th>
+              <th>Quantity</th>
+              <th>Date Added</th>
+            </tr>
+          </thead>
+          <tbody id="importPreviewBody"></tbody>
+        </table>
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" id="importCancelBtn" class="btn btn-secondary">Cancel</button>
+        <button type="button" id="importConfirmBtn" class="btn btn-primary">Confirm Import</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="toast" class="toast" hidden></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
